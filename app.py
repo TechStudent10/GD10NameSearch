@@ -54,4 +54,4 @@ def getCroppedImage(name: str):
 
     return serve_pil_image(cropped_image)
 
-app.run(debug=os.getenv("DEBUG") == "TRUE")
+app.run(debug=os.getenv("DEBUG") == "TRUE", port=os.getenv("PORT"))
