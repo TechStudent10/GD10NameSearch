@@ -1,0 +1,11 @@
+{% extends "layout.html" %}
+{% block title %}Name - {{ name }}{% endblock %}
+{% block content %}
+<h2 style="text-decoration: underline;">{{ name }}</h2>
+<p>
+    You're on the image!
+    <br>
+    <a href="/">Find another name</a>
+</p>
+<img src="/getCroppedImage/{{ name }}" />
+{% endblock %}

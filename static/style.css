@@ -1,0 +1,46 @@
+:root {
+    --text: hsl(0, 0%, 100%);
+    --background: hsl(240, 100%, 10%);
+    --primary: hsl(240, 78%, 70%);
+    --secondary: hsl(240, 80%, 8%);
+    --accent: hsl(240, 78%, 48%);
+}
+
+body {
+    background-color: var(--background);
+    color: var(--text);
+}
+
+.content {
+    text-align: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+footer {
+    position: absolute;
+    bottom: 5px;
+    text-align: center;
+    width: 100vw;
+}
+
+footer div {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+footer a {
+    color: white;
+    text-decoration: none;
+}
+
+footer a i {
+    font-size: 2rem;
+}
+
+footer a:hover {
+    color: grey;
+}
