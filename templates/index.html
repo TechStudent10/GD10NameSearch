@@ -1,17 +1,23 @@
 {% extends "layout.html" %}
 {% block title %}Home{% endblock %}
 {% block content %}
-<p>Please enter the name of the player/creator/composer you want to find</p>
+<br>
+<img src="{{ url_for('static', filename='logo.png') }}" width="390" height="220" />
+<br>
+<br>
+<p>Enter the name of the player/creator/composer you want to find!</p>
 <form id="form">
     <div class="input-group mb-3">
         <input type="text" placeholder="Name here!" id="name" class="form-control" autocomplete="off" />
         <button type="submit" class="btn btn-primary">Find name</button>
     </div>
 </form>
+<p><b>
+    Note: About 11% of all names on the image were not able to be picked up by the image recognition software <i>(Tesseract-OCR, if anyone is curious)</i>. These names <u>are in the image</u>, but you'll have to find them first ;)
+</b></p>
 <script>
     document.getElementById("form").onsubmit = function redirectToNamePage(e) {
         e.preventDefault()
-        console.log("hw")
         const name = document.getElementById("name").value
         window.location.href = `/name/${name}`
     }

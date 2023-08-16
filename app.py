@@ -8,14 +8,26 @@ load_dotenv()
 app = Flask(__name__)
 
 names = {}
-with open("names.json", "r") as file:
+with open("names.json", "r", encoding="utf8") as file:
     names: dict = json.load(file)
+
+creditsList = []
+with open("credits.txt", "r", encoding="utf8") as file:
+    creditsList = file.read().split("\n")
 
 def serve_pil_image(pil_img: Image):
     img_io = BytesIO()
     pil_img.save(img_io, 'JPEG', quality=70)
     img_io.seek(0)
     return send_file(img_io, mimetype='image/jpeg')
+
+# yeah I have no clue what to name this
+def exitIfNotInFiles(name: str):
+    if name.lower() not in names.keys():
+        if name.upper() not in creditsList:
+            return render_template("cannotFindName.html", name=name), 404
+        return render_template("nameInCredits.html", name=name)
+    return None
 
 @app.route("/")
 def index():
@@ -27,15 +39,15 @@ def nameIndex():
 
 @app.route("/name/<name>")
 def showName(name: str):
-    if name.lower() not in names.keys():
-        return render_template("cannotFindName.html", name=name), 404
+    result = exitIfNotInFiles(name)
+    if result: return result
 
     return render_template("name.html", name=name)
 
 @app.route("/getCroppedImage/<name>")
 def getCroppedImage(name: str):
-    if name.lower() not in names.keys():
-        return render_template("cannotFindName.html", name=name), 404
+    result = exitIfNotInFiles(name)
+    if result: return result
 
     dimensions = names[name.lower()]
     top = dimensions["top"]
