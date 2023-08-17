@@ -44,3 +44,13 @@ footer a i {
 footer a:hover {
     color: grey;
 }
+
+@media screen and (max-height: 800px) {
+    .created-by {
+        display: none;
+    }
+
+    footer {
+        bottom: 0.5px;
+    }
+}
