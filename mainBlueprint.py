@@ -33,7 +33,7 @@ def index():
 
 @app.route("/name/")
 def nameIndex():
-    return redirect(url_for("index"))
+    return redirect(url_for("main.index"))
 
 @app.route("/name/<name>")
 def showName(name: str):
